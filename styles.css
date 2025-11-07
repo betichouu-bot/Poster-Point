@@ -38,13 +38,17 @@
     }
     /* site logo (uses the attached image when present at assets/logo.png) */
     .logo .site-logo{
-      width:44px;
-      height:44px;
+      width:48px;
+      height:48px;
       border-radius:8px;
-      object-fit:cover;
+      /* show full logo without cropping to avoid blurry text */
+      object-fit:contain;
       display:block;
       box-shadow:var(--shadow);
       background:linear-gradient(135deg,#2b2b2b,#111);
+      /* improve sharpness on some browsers / devices */
+      -webkit-font-smoothing:antialiased;
+      image-rendering: -webkit-optimize-contrast;
     }
     /* fallback mark (kept for compatibility) */
     .logo .mark{
