@@ -531,14 +531,29 @@ function renderProducts() {
 
         // Size options for posters (also apply to Split Posters)
         let sizeHtml = '';
+        // Default display price for the card (used when size-select exists)
+        let defaultSizePrice = p.price;
         if(selectedType === 'Posters' || selectedType === 'Split Posters') {
-            sizeHtml = `
-                <option value="A4" data-price="39" selected>A4 - ₹39</option>
-                <option value="A3" data-price="69">A3 - ₹69</option>
-                <option value="A5" data-price="25">A5 - ₹25</option>
-                <option value="Pocket" data-price="10">Pocket - ₹10</option>
-                <option value="4x6" data-price="19">4*6 inch - ₹19</option>
-            `;
+            if (selectedType === 'Split Posters') {
+                // Split Posters have higher base prices per request
+                sizeHtml = `
+                    <option value="A4" data-price="159" selected>A4 - ₹159</option>
+                    <option value="A3" data-price="259">A3 - ₹259</option>
+                    <option value="A5" data-price="25">A5 - ₹25</option>
+                    <option value="Pocket" data-price="10">Pocket - ₹10</option>
+                    <option value="4x6" data-price="19">4*6 inch - ₹19</option>
+                `;
+                defaultSizePrice = 159;
+            } else {
+                sizeHtml = `
+                    <option value="A4" data-price="39" selected>A4 - ₹39</option>
+                    <option value="A3" data-price="69">A3 - ₹69</option>
+                    <option value="A5" data-price="25">A5 - ₹25</option>
+                    <option value="Pocket" data-price="10">Pocket - ₹10</option>
+                    <option value="4x6" data-price="19">4*6 inch - ₹19</option>
+                `;
+                defaultSizePrice = 39;
+            }
         }
         
     // Product badge and type (show badge for Posters and Split Posters)
@@ -555,7 +570,7 @@ function renderProducts() {
             ${badge}
             <div class="card-body">
                 <div class="product-name">${escapeHtml(p.name)}</div>
-                <div class="product-price">${formatINR(p.price)}</div>
+                <div class="product-price">${formatINR(defaultSizePrice)}</div>
                 <div class="muted">${itemType}${selectedType === 'Posters' ? ' • <span class="size-label">A4</span>' : ''}</div>
                 <div class="controls">
                     ${selectedType === 'Posters' ? `
