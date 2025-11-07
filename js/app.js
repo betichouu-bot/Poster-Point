@@ -1102,30 +1102,7 @@ window.addEventListener('DOMContentLoaded', () => {
         document.getElementById('subcats')?.addEventListener('click', () => { if (window.innerWidth <= 720) closeSidebar(); });
     }
 
-    // Global quick-size dropdown (toolbar) — allows forcing A3 for Split Posters
-    const globalSizeSelect = document.getElementById('global-size-select');
-    if (globalSizeSelect) {
-        globalSizeSelect.addEventListener('change', (ev) => {
-            const val = globalSizeSelect.value;
-            // If user selects the A3 quick option, set all visible size-selects to A3
-            if (val === 'A3-SPLIT') {
-                document.querySelectorAll('.size-select').forEach(sel => {
-                    // Only change selects that belong to Split Posters (inspect surrounding card)
-                    const card = sel.closest('.card');
-                    if (!card) return;
-                    // Heuristic: the select's options include A3 with data-price 259 for Split Posters
-                    const hasA3 = Array.from(sel.options).some(o => o.value === 'A3' && Number(o.dataset.price || 0) === 259);
-                    if (hasA3) {
-                        sel.value = 'A3';
-                        sel.dispatchEvent(new Event('change', { bubbles: true }));
-                    }
-                });
-            } else {
-                // Default: don't change per-card selections; user can individually change sizes
-                // Optionally we could reset selects to their inherent default (A4), but keep non-destructive
-            }
-        });
-    }
+    
 });
 
 // Runtime diagnostics helper: print manifest categories and counts
