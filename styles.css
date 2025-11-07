@@ -23,11 +23,10 @@
     }
 
     header{
-      padding:16px 18px;
+      padding:20px 28px;
       display:flex;
       align-items:center;
-      gap:12px;
-      flex-wrap:wrap; /* allow header to wrap on small screens */
+      gap:16px;
       border-bottom:1px solid rgba(255,255,255,0.03);
       background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);
     }
@@ -36,49 +35,10 @@
       gap:10px;
       align-items:center;
     }
-    /* site logo (uses the attached image when present at assets/logo.png) */
-    .logo .site-logo{
-      width:48px;
-      height:48px;
-      border-radius:8px;
-      /* show full logo without cropping to avoid blurry text */
-      object-fit:contain;
-      display:block;
-      box-shadow:var(--shadow);
-      background:linear-gradient(135deg,#2b2b2b,#111);
-      /* improve sharpness on some browsers / devices */
-      -webkit-font-smoothing:antialiased;
-      image-rendering: -webkit-optimize-contrast;
-    }
-    /* fallback mark (kept for compatibility) */
     .logo .mark{
       width:44px;height:44px;border-radius:8px;background:linear-gradient(135deg,#2b2b2b,#111);
       display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--accent);
       box-shadow:var(--shadow);
-    }
-    /* Hamburger button (hidden on desktop) */
-    .hamburger-btn{
-      display:none; /* enabled on small screens */
-      background:transparent;
-      border:1px solid rgba(255,255,255,0.04);
-      color:#fff;
-      padding:8px;
-      border-radius:10px;
-      cursor:pointer;
-      align-items:center;
-      justify-content:center;
-    }
-
-    /* Overlay that appears when the off-canvas sidebar is open on mobiles */
-    .sidebar-overlay{
-      display:none;
-      position:fixed;
-      inset:0;
-      background:rgba(0,0,0,0.45);
-      z-index:40;
-      opacity:0;
-      transition:opacity .18s ease;
-      pointer-events:none;
     }
     .title{
       font-size:20px; font-weight:700; letter-spacing:0.6px;
@@ -101,16 +61,11 @@
     }
     .sidebar{
       width:260px;
-      /* stronger, bolder background for better contrast */
-      background: rgba(18,18,20,0.92);
+      background:var(--glass);
       border-radius:12px;
       padding:12px;
-      border:1px solid rgba(255,255,255,0.06);
-      box-shadow: 0 8px 28px rgba(0,0,0,0.6);
-      /* allow the sidebar itself to scroll when content overflows */
-      max-height: calc(100vh - 96px);
-      overflow:auto;
-      -webkit-overflow-scrolling: touch;
+      border:1px solid rgba(255,255,255,0.03);
+      height:fit-content;
     }
     .sidebar-section{ margin-bottom:12px }
     .sidebar-title{ font-weight:800; margin-bottom:8px }
@@ -119,11 +74,9 @@
     .type-list li.active, .subcat-list li.active{ background:linear-gradient(90deg,#ef5350,#d32f2f); color:white; font-weight:800 }
     .main-content{ flex:1 }
     .toolbar{ display:flex; gap:12px; align-items:center; justify-content:space-between; margin-bottom:8px }
-  .search input{ width:420px; max-width:60%; padding:10px 12px; border-radius:10px; border:1px solid rgba(255,255,255,0.04); background:transparent; color:#fff; box-sizing:border-box }
+    .search input{ width:420px; max-width:60%; padding:10px 12px; border-radius:10px; border:1px solid rgba(255,255,255,0.04); background:transparent; color:#fff }
     .search input::placeholder{ color:var(--muted) }
     .summary{ color:var(--muted); font-weight:700 }
-
-/* toolbar quick-size select removed */
 
     /* Themed size select used on product cards */
     .size-select{
@@ -172,11 +125,11 @@
     .grid{
       display:grid;
       grid-template-columns: repeat(4, 1fr);
-      gap:16px;
+      gap:20px;
       align-items:start;
       max-width:1400px;
       margin:0 auto;
-      padding:0 12px;
+      padding:0 16px;
     }
 
     .card{
@@ -188,16 +141,14 @@
       transition:transform .18s ease, box-shadow .18s ease;
       display:flex;
       flex-direction:column;
-      height: auto; /* allow content-driven height on small screens */
-      min-height: 360px;
+      height: 520px; /* Increased fixed height so full content fits */
     }
     .card:hover{ transform: translateY(-8px); box-shadow: 0 18px 40px rgba(0,0,0,0.7); }
 
     /* Fixed aspect ratio for all thumbnails */
     .thumb{
       width:100%;
-      /* Use aspect-ratio for responsive thumbnails instead of fixed px height */
-      aspect-ratio: 4/3;
+      height: 280px; /* Increased thumb height for larger preview */
       display:flex;
       align-items:center;
       justify-content:center;
@@ -205,16 +156,11 @@
       overflow:hidden;
     }
     
-    /* Ensure images maintain aspect ratio within thumb and show full artwork (zoomed-out) */
+    /* Ensure images maintain aspect ratio within thumb */
     .thumb img {
-      /* Use contain so the full image is visible rather than being cropped */
-      object-fit: contain;
-      width: auto;
+      width: 100%;
       height: 100%;
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-      background: transparent;
+      object-fit: cover;
     }
 
     /* For full-page sticker thumbnails: show full image (zoomed out) */
@@ -233,7 +179,7 @@
     }
     .card{ position:relative }
     .card-body{
-      padding:12px 14px;
+      padding:14px 16px;
       display:flex;
       flex-direction:column;
       flex:1;
@@ -241,7 +187,7 @@
       justify-content: flex-start;
       align-items: center;
       text-align: center;
-      gap:8px;
+      max-height: 250px;
     }
     .product-name{ 
       font-weight:800; 
@@ -300,26 +246,6 @@
       padding:6px 10px;border-radius:10px;font-weight:700;color:#fff;border:1px solid rgba(255,255,255,0.03);
       display:inline-flex;gap:8px;align-items:center;
     }
-
-    /* Small overlay button to quickly view an item's category on mobile */
-    .category-quick-btn{
-      position:absolute;
-      left:12px;
-      bottom:12px;
-      width:38px;
-      height:38px;
-      border-radius:10px;
-      background:rgba(0,0,0,0.5);
-      border:1px solid rgba(255,255,255,0.06);
-      color:#fff;
-      display:none; /* shown only on small screens via media queries */
-      align-items:center;
-      justify-content:center;
-      cursor:pointer;
-      z-index:6;
-      padding:6px;
-    }
-    .category-quick-btn svg{ display:block; width:18px; height:18px; }
     .qty button{ background:transparent;border:1px solid rgba(255,255,255,0.03); color:var(--muted); padding:4px 6px;border-radius:8px; cursor:pointer }
 
     /* bottom cart */
@@ -366,57 +292,23 @@
     /* Tablet: 2 columns */
     @media (max-width:900px){
       .grid{ grid-template-columns: repeat(2, 1fr); max-width:900px }
-      .search input{ max-width:100%; width:100%; }
-      .toolbar{ gap:10px }
     }
 
     /* Mobile: 1 column */
     @media (max-width:720px){
-      .grid{ grid-template-columns: repeat(1, 1fr); max-width:100% }
+      .grid{ grid-template-columns: repeat(1, 1fr); max-width:420px }
       .layout{ flex-direction:column; padding:0 12px }
-  /* Move sidebar off-canvas on mobile and show via hamburger */
-  .sidebar{ position:fixed; left:-110%; top:72px; bottom:12px; width:calc(100% - 24px); order:2; z-index:50; transition:left .25s cubic-bezier(.2,.9,.2,1); overflow:auto }
-  .sidebar.open{ left:12px }
-  .sidebar-overlay{ display:block }
-  .sidebar-overlay.open{ pointer-events:auto; opacity:1 }
-  /* Ensure off-canvas sidebar uses same bold background and scroll area */
-  .sidebar{ background: rgba(18,18,20,0.96); border:1px solid rgba(255,255,255,0.06); }
-  .sidebar::-webkit-scrollbar{ width:10px }
-  .sidebar::-webkit-scrollbar-thumb{ background: rgba(255,255,255,0.05); border-radius:8px }
+      .sidebar{ width:100%; order:2 }
       .main-content{ order:1 }
       .cart { left:12px; right:12px; width:auto; bottom:12px }
-      /* Make cards adapt to content on mobile */
-      .card { min-height: 420px }
-      .thumb { aspect-ratio: 16/10 }
-      /* Make toolbar stack on mobile */
-      .toolbar{ flex-direction:column; align-items:stretch; gap:8px }
-      .search{ width:100% }
-      .search input{ width:100%; max-width:100%; }
-      #offer-banner{ width:100%; order:2 }
-      .summary{ order:3 }
-      /* Make type list horizontal scrollable to save vertical space */
-      .type-list{ flex-direction:row; overflow:auto; gap:8px }
-      .type-list li{ white-space:nowrap }
-      /* show the category quick button on mobile */
-      .category-quick-btn{ display:flex }
-  /* show hamburger button on mobile */
-  .hamburger-btn{ display:flex }
-      /* Zoom images out slightly on mobile so more of the art is visible */
-      .thumb img{ object-fit:contain; width:auto; height:100%; }
+      /* Keep card and thumb heights consistent on mobile (increased) */
+      .card { height: 500px }
+      .thumb { height: 260px }
     }
 
     @media (max-width:480px){
-      .grid{ max-width:100% }
-      /* Adjust card height for very small screens */
-      .card { min-height: 380px }
-      .thumb { aspect-ratio: 4/3 }
-      header{ padding:12px }
-      .logo .mark{ width:40px; height:40px }
-      .title{ font-size:18px }
-      .subtitle{ font-size:11px }
-      /* Cart becomes full-width bottom drawer on very small screens */
-      .cart{ right:0; left:0; top:auto; bottom:0; width:100%; max-width:100%; height:60vh }
-      .cart.open{ right:0 }
-      /* On very small devices, ensure thumbnails are zoomed out */
-      .thumb img{ object-fit:contain; width:auto; height:100%; }
+      .grid{ max-width:360px }
+      /* Adjust card height for smaller screens (increased) */
+      .card { height: 480px }
+      .thumb { height: 240px }
     }
