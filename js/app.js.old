@@ -1,0 +1,65 @@
+/**
+ * Poster Point - Main Application
+ * 
+ * Features:
+ * - Product catalog and filtering
+ * - Cart management
+ * - Category organization
+ * - Price management
+ * - UI interactions
+ */
+
+// Product configuration
+const defaultCatalog = {
+  'ANIME': [],          // Anime posters
+  'ASTHETICS': [],      // Aesthetic posters
+  'DC': [],            // DC Comics posters
+  'DEVOTIONAL': [],    // Religious posters
+  'MARVEL': [],        // Marvel posters
+  'MOVIE POSTERS': [], // Movie posters
+  'SINGLE STICKERS': [],// Single stickers
+  'FULLPAGE': []       // Full page stickers
+};
+
+// Debug: Log categories loaded from manifest
+console.debug('Default categories:', Object.keys(defaultCatalog));
+if (window.imageCatalog) {
+  console.debug('Manifest categories:', Object.keys(window.imageCatalog));
+}
+
+// Sync imageCatalog categories with actual directories
+console.group('Catalog Validation');
+try {
+    // First, ensure imageCatalog exists and has the right format
+    if (!window.imageCatalog || typeof window.imageCatalog !== 'object') {
+        console.debug('No manifest loaded or invalid format, using default catalog');
+        window.imageCatalog = { ...defaultCatalog };
+    }
+    
+    // Add any missing categories from default catalog
+    Object.entries(defaultCatalog).forEach(([cat, _]) => {
+        if (!window.imageCatalog[cat] || !Array.isArray(window.imageCatalog[cat])) {
+            console.warn(`Adding missing category: ${cat}`);
+            window.imageCatalog[cat] = [];
+        }
+    });
+    
+    // Remove any categories that aren't in our default list
+    Object.keys(window.imageCatalog).forEach(cat => {
+        if (!defaultCatalog.hasOwnProperty(cat)) {
+            console.warn(`Removing unexpected category: ${cat}`);
+            delete window.imageCatalog[cat];
+        }
+    });
+    
+    // Log the final category status
+    console.debug('Final categories:', Object.keys(window.imageCatalog).map(cat => 
+        `${cat}: ${window.imageCatalog[cat].length} images`
+    ));
+    
+} catch (error) {
+    console.error('Error validating catalog:', error);
+    window.imageCatalog = { ...defaultCatalog };
+} finally {
+    console.groupEnd();
+}

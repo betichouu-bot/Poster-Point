@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Poster Point — Home</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <div class="mark">PP</div>
+      <div>
+        <div class="title">Poster Point</div>
+        <div class="subtitle">Prints • Stickers • Gifts</div>
+      </div>
+    </div>
+    <div style="flex:1"></div>
+    <nav style="display:flex;gap:12px;align-items:center">
+      <a href="home.html" style="color:var(--muted); text-decoration:none; font-weight:700">Home</a>
+      <a href="#about" style="color:var(--muted); text-decoration:none; font-weight:700">About</a>
+      <a href="#contacts" style="color:var(--muted); text-decoration:none; font-weight:700">Contacts</a>
+      <a href="index.html" class="checkout" style="padding:8px 12px">Shop</a>
+    </nav>
+  </header>
+
+  <main style="padding:40px; max-width:1000px; margin:0 auto">
+    <section style="text-align:center; margin-bottom:30px">
+      <h1 style="font-size:28px; margin:0 0 8px 0">Beautiful posters, stickers and gifts</h1>
+      <p style="color:var(--muted); margin:0 0 18px">Browse curated categories or jump straight to our posters shop.</p>
+    </section>
+
+    <section class="grid" style="grid-template-columns: repeat(3,1fr); gap:18px;">
+      <a href="index.html?type=Posters" class="card" style="text-decoration:none;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;min-height:140px">
+        <div style="font-size:22px;font-weight:800">Posters</div>
+        <div style="color:var(--muted); margin-top:8px">Large prints • A4, A3</div>
+      </a>
+      <a href="index.html?type=Bookmarks" class="card" style="text-decoration:none;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;min-height:140px">
+        <div style="font-size:22px;font-weight:800">Bookmarks</div>
+        <div style="color:var(--muted); margin-top:8px">Paper & laminated bookmarks</div>
+      </a>
+      <!-- 3D Posters removed for now -->
+      <a href="index.html?type=Stickers" class="card" style="text-decoration:none;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;min-height:140px">
+        <div style="font-size:22px;font-weight:800">Stickers</div>
+        <div style="color:var(--muted); margin-top:8px">Waterproof & matte</div>
+      </a>
+      
+    </section>
+
+    <section id="about" style="margin-top:28px; padding:18px; background:var(--glass); border-radius:12px">
+      <h2 style="margin:0 0 8px 0">About PosterPoint</h2>
+      <p style="color:var(--muted); margin:0 0 8px 0">Welcome to PosterPoint, your premier destination for high-quality posters, prints, and visual communication solutions. With a passion for creativity and innovation, we strive to inspire and empower individuals, businesses, and organizations to express themselves and connect with their audience.</p>
+      <p style="color:var(--muted); margin:0 0 8px 0">At PosterPoint, we understand the power of visual storytelling and the impact it can have on people's lives. Our team of experts is dedicated to providing a vast range of posters, from motivational and inspirational designs to custom-made prints for events, conferences, and exhibitions.</p>
+      <p style="color:var(--muted); margin:0">With a commitment to quality, customer satisfaction, and timely delivery, PosterPoint has established itself as a trusted name in the industry. Whether you're a student, entrepreneur, or marketing professional, we're here to help you make a lasting impression with our stunning posters and prints.</p>
+      <p style="color:var(--muted); margin:10px 0 0 0; font-weight:600">Join the PosterPoint community today and discover the art of visual communication!</p>
+    </section>
+
+    <section id="contacts" style="margin-top:18px; padding:18px; display:flex; gap:18px; align-items:flex-start">
+      <div style="flex:1; background:var(--glass); padding:12px; border-radius:8px">
+        <h3 style="margin:0 0 6px 0">Contact us</h3>
+        <div style="color:var(--muted)">Email: <a href="mailto:poster.point4@gmail.com" style="color:var(--muted)">poster.point4@gmail.com</a></div>
+        <div style="color:var(--muted); margin-top:6px">Phone: <a href="tel:+919395508081" style="color:var(--muted)">+91 93955 08081</a></div>
+      </div>
+      <div style="width:260px; background:var(--glass); padding:12px; border-radius:8px">
+        <h3 style="margin:0 0 6px 0">Location</h3>
+        <div style="color:var(--muted)">Moranhat, Assam, India</div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

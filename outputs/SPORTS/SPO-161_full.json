@@ -1,0 +1,14 @@
+{
+  "source": "C:\\Users\\Prati\\Downloads\\poster point\\images\\PINTEREST IMAGES\\SPORTS\\1 (54).jpg",
+  "output": "C:\\Users\\Prati\\Downloads\\poster point\\outputs\\SPORTS\\1 (54)_full.jpg",
+  "paste_bbox": {
+    "x": 158,
+    "y": 145,
+    "width": 468,
+    "height": 361
+  },
+  "params": {
+    "scale": 0.28203125,
+    "mode": "full_paste"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "source": "C:\\Users\\Prati\\Downloads\\poster point\\images\\PINTEREST IMAGES\\DEVOTIONAL\\DE-074.jpg",
+  "output": "C:\\Users\\Prati\\Downloads\\poster point\\outputs\\DEVOTIONAL\\DE-074_full.jpg",
+  "paste_bbox": {
+    "x": 158,
+    "y": 145,
+    "width": 468,
+    "height": 361
+  },
+  "params": {
+    "scale": 0.42874109263657956,
+    "mode": "full_paste"
+  }
+}

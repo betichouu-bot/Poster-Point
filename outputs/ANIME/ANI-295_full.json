@@ -1,0 +1,14 @@
+{
+  "source": "C:\\Users\\Prati\\Downloads\\poster point\\images\\PINTEREST IMAGES\\ANIME\\AN-099.jpg",
+  "output": "C:\\Users\\Prati\\Downloads\\poster point\\outputs\\ANIME\\AN-099_full.jpg",
+  "paste_bbox": {
+    "x": 158,
+    "y": 145,
+    "width": 468,
+    "height": 361
+  },
+  "params": {
+    "scale": 0.3266968325791855,
+    "mode": "full_paste"
+  }
+}

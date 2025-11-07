@@ -1,0 +1,15 @@
+{
+  "source": "C:\\Users\\Prati\\Downloads\\poster point\\images\\PINTEREST IMAGES\\BOOKMARK\\BM (175).png",
+  "output": "C:\\Users\\Prati\\Downloads\\poster point\\outputs\\BOOKMARK\\BM (175)_full.jpg",
+  "paste_bbox": {
+    "x": 192,
+    "y": 294,
+    "width": 282,
+    "height": 515,
+    "threshold": 230
+  },
+  "params": {
+    "scale": 0.14867205542725173,
+    "template": "013.jpg"
+  }
+}

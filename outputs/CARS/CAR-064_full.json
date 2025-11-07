@@ -1,0 +1,14 @@
+{
+  "source": "C:\\Users\\Prati\\Downloads\\poster point\\images\\PINTEREST IMAGES\\CARS\\CAR-064.jpg",
+  "output": "C:\\Users\\Prati\\Downloads\\poster point\\outputs\\CARS\\CAR-064_full.jpg",
+  "paste_bbox": {
+    "x": 158,
+    "y": 145,
+    "width": 468,
+    "height": 361
+  },
+  "params": {
+    "scale": 0.36799184505606525,
+    "mode": "full_paste"
+  }
+}

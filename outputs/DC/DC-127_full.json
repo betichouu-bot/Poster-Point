@@ -1,0 +1,14 @@
+{
+  "source": "C:\\Users\\Prati\\Downloads\\poster point\\images\\PINTEREST IMAGES\\DC\\DC-043.jpg",
+  "output": "C:\\Users\\Prati\\Downloads\\poster point\\outputs\\DC\\DC-043_full.jpg",
+  "paste_bbox": {
+    "x": 158,
+    "y": 145,
+    "width": 468,
+    "height": 361
+  },
+  "params": {
+    "scale": 0.268801191362621,
+    "mode": "full_paste"
+  }
+}

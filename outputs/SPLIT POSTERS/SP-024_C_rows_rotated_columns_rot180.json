@@ -1,0 +1,16 @@
+{
+  "source": "C:\\Users\\Prati\\Downloads\\poster point\\images\\PINTEREST IMAGES\\SPLIT POSTERS\\SP-024.jpeg",
+  "output": "C:\\Users\\Prati\\Downloads\\poster point\\outputs\\SPLIT_POSTERS\\SP-024_C_rows_rotated_columns_rot180.jpeg",
+  "strip": "C:\\Users\\Prati\\Downloads\\poster point\\outputs\\SPLIT_POSTERS\\SP-024_C_rows_rotated_columns_rot180_strip.png",
+  "paste_bbox": {
+    "x": 158,
+    "y": 120,
+    "width": 468,
+    "height": 222
+  },
+  "params": {
+    "spacing": 12,
+    "scale": 0.6,
+    "rotated_source_degrees": 180
+  }
+}

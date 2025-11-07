@@ -1,0 +1,17 @@
+{
+  "source": "C:\\Users\\Prati\\Downloads\\poster point\\images\\PINTEREST IMAGES\\SPLIT POSTERS\\SP-023.jpeg",
+  "output": "C:\\Users\\Prati\\Downloads\\poster point\\outputs\\SPLIT_POSTERS_VERTICAL\\SP-023_triptych.jpeg",
+  "strip": "C:\\Users\\Prati\\Downloads\\poster point\\outputs\\SPLIT_POSTERS_VERTICAL\\SP-023_triptych_strip.png",
+  "paste_bbox": {
+    "x": 158,
+    "y": 150,
+    "width": 468,
+    "height": 248
+  },
+  "orientation": "forced-vertical",
+  "params": {
+    "spacing": 12,
+    "scale": 0.6,
+    "y_offset": 150
+  }
+}

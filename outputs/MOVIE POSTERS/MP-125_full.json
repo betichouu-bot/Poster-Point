@@ -1,0 +1,14 @@
+{
+  "source": "C:\\Users\\Prati\\Downloads\\poster point\\images\\PINTEREST IMAGES\\MOVIE POSTERS\\MP-125.jpg",
+  "output": "C:\\Users\\Prati\\Downloads\\poster point\\outputs\\MOVIE POSTERS\\MP-125_full.jpg",
+  "paste_bbox": {
+    "x": 158,
+    "y": 145,
+    "width": 468,
+    "height": 361
+  },
+  "params": {
+    "scale": 0.3269927536231884,
+    "mode": "full_paste"
+  }
+}

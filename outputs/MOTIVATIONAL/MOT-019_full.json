@@ -1,0 +1,14 @@
+{
+  "source": "C:\\Users\\Prati\\Downloads\\poster point\\images\\PINTEREST IMAGES\\MOTIVATIONAL\\MT (15).jpeg",
+  "output": "C:\\Users\\Prati\\Downloads\\poster point\\outputs\\MOTIVATIONAL\\MT (15)_full.jpg",
+  "paste_bbox": {
+    "x": 158,
+    "y": 145,
+    "width": 468,
+    "height": 361
+  },
+  "params": {
+    "scale": 0.333950046253469,
+    "mode": "full_paste"
+  }
+}

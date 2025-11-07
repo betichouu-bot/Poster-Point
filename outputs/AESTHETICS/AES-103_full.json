@@ -1,0 +1,14 @@
+{
+  "source": "C:\\Users\\Prati\\Downloads\\poster point\\images\\PINTEREST IMAGES\\AESTHETICS\\AE-035.jpg",
+  "output": "C:\\Users\\Prati\\Downloads\\poster point\\outputs\\AESTHETICS\\AE-035_full.jpg",
+  "paste_bbox": {
+    "x": 158,
+    "y": 145,
+    "width": 468,
+    "height": 361
+  },
+  "params": {
+    "scale": 0.3467819404418828,
+    "mode": "full_paste"
+  }
+}

@@ -1,0 +1,405 @@
+
+    :root{
+      --bg:#0b0b0d;
+      --card:#0f1012;
+      --accent:#e53935;
+      --muted:#bdbdbd;
+      --glass: rgba(255,255,255,0.03);
+      --shadow: 0 6px 18px rgba(0,0,0,0.6);
+      --radius:14px;
+      --glass-2: rgba(255,255,255,0.02);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      background: linear-gradient(180deg,#070708 0%, #0b0b0d 100%);
+      color:#fff;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+    }
+
+    header{
+      padding:16px 18px;
+      display:flex;
+      align-items:center;
+      gap:12px;
+      flex-wrap:wrap; /* allow header to wrap on small screens */
+      border-bottom:1px solid rgba(255,255,255,0.03);
+      background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);
+    }
+    .logo{
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+    .logo .mark{
+      width:44px;height:44px;border-radius:8px;background:linear-gradient(135deg,#2b2b2b,#111);
+      display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--accent);
+      box-shadow:var(--shadow);
+    }
+    /* Hamburger button (hidden on desktop) */
+    .hamburger-btn{
+      display:none; /* enabled on small screens */
+      background:transparent;
+      border:1px solid rgba(255,255,255,0.04);
+      color:#fff;
+      padding:8px;
+      border-radius:10px;
+      cursor:pointer;
+      align-items:center;
+      justify-content:center;
+    }
+
+    /* Overlay that appears when the off-canvas sidebar is open on mobiles */
+    .sidebar-overlay{
+      display:none;
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.45);
+      z-index:40;
+      opacity:0;
+      transition:opacity .18s ease;
+      pointer-events:none;
+    }
+    .title{
+      font-size:20px; font-weight:700; letter-spacing:0.6px;
+    }
+    .subtitle{font-size:12px;color:var(--muted); margin-top:2px}
+
+    main{
+      padding:28px;
+      flex:1;
+    }
+
+    /* New layout: sidebar + main content */
+    .layout{
+      display:flex;
+      gap:20px;
+      align-items:flex-start;
+      max-width:1400px;
+      margin:0 auto;
+      padding:0 16px;
+    }
+    .sidebar{
+      width:260px;
+      /* stronger, bolder background for better contrast */
+      background: rgba(18,18,20,0.92);
+      border-radius:12px;
+      padding:12px;
+      border:1px solid rgba(255,255,255,0.06);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.6);
+      /* allow the sidebar itself to scroll when content overflows */
+      max-height: calc(100vh - 96px);
+      overflow:auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .sidebar-section{ margin-bottom:12px }
+    .sidebar-title{ font-weight:800; margin-bottom:8px }
+    .type-list, .subcat-list{ list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:6px }
+    .type-list li, .subcat-list li{ padding:8px 10px; border-radius:8px; cursor:pointer; color:var(--muted); }
+    .type-list li.active, .subcat-list li.active{ background:linear-gradient(90deg,#ef5350,#d32f2f); color:white; font-weight:800 }
+    .main-content{ flex:1 }
+    .toolbar{ display:flex; gap:12px; align-items:center; justify-content:space-between; margin-bottom:8px }
+  .search input{ width:420px; max-width:60%; padding:10px 12px; border-radius:10px; border:1px solid rgba(255,255,255,0.04); background:transparent; color:#fff; box-sizing:border-box }
+    .search input::placeholder{ color:var(--muted) }
+    .summary{ color:var(--muted); font-weight:700 }
+
+    /* Themed size select used on product cards */
+    .size-select{
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 10px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+      margin-bottom: 10px;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none'><path d='M6 9l6 6 6-6' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      transition: all 0.2s ease;
+    }
+    .size-select:focus,
+    .size-select:hover {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px rgba(229,57,53,0.2);
+    }
+    .size-select option {
+      background: var(--card);
+      color: #fff;
+      padding: 10px;
+    }
+    
+    /* Style for the size select label */
+    .size-select-label {
+      display: block;
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    /* Make controls align nicely when the select appears */
+    .card .controls{ align-items:center; gap:10px }
+
+    /* Responsive grid: 4 columns on laptop, 2 on tablet, 1 on mobile. */
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap:16px;
+      align-items:start;
+      max-width:1400px;
+      margin:0 auto;
+      padding:0 12px;
+    }
+
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.015), transparent);
+      border-radius:var(--radius);
+      overflow:hidden;
+      box-shadow:var(--shadow);
+      border:1px solid rgba(255,255,255,0.03);
+      transition:transform .18s ease, box-shadow .18s ease;
+      display:flex;
+      flex-direction:column;
+      height: auto; /* allow content-driven height on small screens */
+      min-height: 360px;
+    }
+    .card:hover{ transform: translateY(-8px); box-shadow: 0 18px 40px rgba(0,0,0,0.7); }
+
+    /* Fixed aspect ratio for all thumbnails */
+    .thumb{
+      width:100%;
+      /* Use aspect-ratio for responsive thumbnails instead of fixed px height */
+      aspect-ratio: 4/3;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:linear-gradient(180deg,#111,#222);
+      overflow:hidden;
+    }
+    
+    /* Ensure images maintain aspect ratio within thumb and show full artwork (zoomed-out) */
+    .thumb img {
+      /* Use contain so the full image is visible rather than being cropped */
+      object-fit: contain;
+      width: auto;
+      height: 100%;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      background: transparent;
+    }
+
+    /* For full-page sticker thumbnails: show full image (zoomed out) */
+    .thumb.contain img {
+      object-fit: contain;
+      width: auto;
+      height: 100%;
+      display:block;
+      margin-left:auto; margin-right:auto;
+      background: #000; /* subtle backdrop so borders are visible when image doesn't fill */
+    }
+
+    /* Small badge to indicate size A4 */
+    .card .badge-a4{
+      position:absolute; top:12px; left:12px; background:rgba(0,0,0,0.45); padding:6px 8px; border-radius:8px; font-size:12px; color:var(--muted); border:1px solid rgba(255,255,255,0.03);
+    }
+    .card{ position:relative }
+    .card-body{
+      padding:12px 14px;
+      display:flex;
+      flex-direction:column;
+      flex:1;
+      /* Keep content at the top so controls appear right under product info */
+      justify-content: flex-start;
+      align-items: center;
+      text-align: center;
+      gap:8px;
+    }
+    .product-name{ 
+      font-weight:800; 
+      font-size:20px; 
+      margin:2px 0 ; 
+      color:#fff;
+      min-height: 20px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      line-height: 1.1;
+    }
+    .product-price{ 
+      font-weight:900; 
+      color:var(--accent); 
+      font-size:22px;
+      margin:4px 0; /* Consistent spacing */
+    }
+    .muted{ 
+      color:var(--muted); 
+      font-size:13px;
+      min-height: 18px; /* Space for type description */
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      margin-bottom: 8px;
+    }
+
+    .controls{
+      display:flex;flex-direction:column;gap:10px;
+      /* show controls immediately after product info */
+      align-items:center;
+      padding-top:6px;
+      width:100%;
+      z-index: 3;
+    }
+    .controls-row{ display:flex; align-items:center; gap:12px; justify-content:center; width:100% }
+    .controls-row .qty{ margin-right:0 }
+    button.add{
+      background:linear-gradient(90deg,var(--accent), #b71c1c);
+      border:none;color:white;padding:12px 18px;border-radius:12px;cursor:pointer;font-weight:800;
+      box-shadow: 0 8px 26px rgba(229,57,53,0.22);
+      font-size:15px;
+      min-width:120px;
+      flex: none;
+      display:inline-block;
+    }
+    button.add:active{ transform:translateY(1px) }
+    /* Ensure any icon (svg) inside add-to-cart / buy buttons is white */
+    button.add svg, button.add i, button.add img, button.add *{ color: #fff !important; fill: #fff !important; stroke: #fff !important; }
+
+    .qty {
+      background:var(--glass);
+      padding:6px 10px;border-radius:10px;font-weight:700;color:#fff;border:1px solid rgba(255,255,255,0.03);
+      display:inline-flex;gap:8px;align-items:center;
+    }
+
+    /* Small overlay button to quickly view an item's category on mobile */
+    .category-quick-btn{
+      position:absolute;
+      left:12px;
+      bottom:12px;
+      width:38px;
+      height:38px;
+      border-radius:10px;
+      background:rgba(0,0,0,0.5);
+      border:1px solid rgba(255,255,255,0.06);
+      color:#fff;
+      display:none; /* shown only on small screens via media queries */
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      z-index:6;
+      padding:6px;
+    }
+    .category-quick-btn svg{ display:block; width:18px; height:18px; }
+    .qty button{ background:transparent;border:1px solid rgba(255,255,255,0.03); color:var(--muted); padding:4px 6px;border-radius:8px; cursor:pointer }
+
+    /* bottom cart */
+    .cart {
+      position:fixed;
+      right:22px;
+      bottom:22px;
+      width:340px;
+      max-width:calc(100% - 48px);
+      background:linear-gradient(180deg, rgba(10,10,10,0.9), rgba(8,8,8,0.8));
+      border-radius:16px;
+      box-shadow:0 20px 50px rgba(0,0,0,0.6);
+      border:1px solid rgba(255,255,255,0.04);
+      overflow:hidden;
+    }
+    /* Off-canvas cart drawer (hidden by default). .cart.open will slide in */
+    .cart{
+      position:fixed; right:-420px; top:72px; bottom:22px; width:380px; max-width:calc(100% - 48px);
+      transition: right .28s cubic-bezier(.2,.9,.2,1), opacity .18s ease;
+      opacity:0; pointer-events:none;
+    }
+    .cart.open{ right:22px; opacity:1; pointer-events:auto }
+    .cart-header{
+      display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid rgba(255,255,255,0.03);
+    }
+    .cart-body{ padding:12px; max-height:320px; overflow:auto; }
+    .cart-item{ display:flex; gap:12px; align-items:center; margin-bottom:12px; }
+    .cart-item img{ width:56px;height:56px;object-fit:cover;border-radius:8px;border:1px solid rgba(255,255,255,0.03) }
+    .cart-item .meta{ flex:1 }
+    .cart-item .meta .name{ font-weight:700; font-size:14px }
+    .cart-item .meta .line{ color:var(--muted); font-size:13px; margin-top:4px }
+    .cart-footer{ padding:12px 16px; border-top:1px solid rgba(255,255,255,0.03); display:flex; align-items:center; justify-content:space-between; gap:12px }
+    .total{ font-weight:900; font-size:18px; color:var(--accent) }
+
+    .checkout{
+      background:linear-gradient(90deg,#ef5350,#d32f2f);
+      border:none; color:white; padding:10px 12px; border-radius:10px; cursor:pointer; font-weight:800;
+    }
+
+    /* empty cart */
+    .empty { color:var(--muted); text-align:center; padding:40px 8px; font-size:14px }
+
+    /* Keep the product column single and centered on laptop and below to prevent expansion. */
+    /* Tablet: 2 columns */
+    @media (max-width:900px){
+      .grid{ grid-template-columns: repeat(2, 1fr); max-width:900px }
+      .search input{ max-width:100%; width:100%; }
+      .toolbar{ gap:10px }
+    }
+
+    /* Mobile: 1 column */
+    @media (max-width:720px){
+      .grid{ grid-template-columns: repeat(1, 1fr); max-width:100% }
+      .layout{ flex-direction:column; padding:0 12px }
+  /* Move sidebar off-canvas on mobile and show via hamburger */
+  .sidebar{ position:fixed; left:-110%; top:72px; bottom:12px; width:calc(100% - 24px); order:2; z-index:50; transition:left .25s cubic-bezier(.2,.9,.2,1); overflow:auto }
+  .sidebar.open{ left:12px }
+  .sidebar-overlay{ display:block }
+  .sidebar-overlay.open{ pointer-events:auto; opacity:1 }
+  /* Ensure off-canvas sidebar uses same bold background and scroll area */
+  .sidebar{ background: rgba(18,18,20,0.96); border:1px solid rgba(255,255,255,0.06); }
+  .sidebar::-webkit-scrollbar{ width:10px }
+  .sidebar::-webkit-scrollbar-thumb{ background: rgba(255,255,255,0.05); border-radius:8px }
+      .main-content{ order:1 }
+      .cart { left:12px; right:12px; width:auto; bottom:12px }
+      /* Make cards adapt to content on mobile */
+      .card { min-height: 420px }
+      .thumb { aspect-ratio: 16/10 }
+      /* Make toolbar stack on mobile */
+      .toolbar{ flex-direction:column; align-items:stretch; gap:8px }
+      .search{ width:100% }
+      .search input{ width:100%; max-width:100%; }
+      #offer-banner{ width:100%; order:2 }
+      .summary{ order:3 }
+      /* Make type list horizontal scrollable to save vertical space */
+      .type-list{ flex-direction:row; overflow:auto; gap:8px }
+      .type-list li{ white-space:nowrap }
+      /* show the category quick button on mobile */
+      .category-quick-btn{ display:flex }
+  /* show hamburger button on mobile */
+  .hamburger-btn{ display:flex }
+      /* Zoom images out slightly on mobile so more of the art is visible */
+      .thumb img{ object-fit:contain; width:auto; height:100%; }
+    }
+
+    @media (max-width:480px){
+      .grid{ max-width:100% }
+      /* Adjust card height for very small screens */
+      .card { min-height: 380px }
+      .thumb { aspect-ratio: 4/3 }
+      header{ padding:12px }
+      .logo .mark{ width:40px; height:40px }
+      .title{ font-size:18px }
+      .subtitle{ font-size:11px }
+      /* Cart becomes full-width bottom drawer on very small screens */
+      .cart{ right:0; left:0; top:auto; bottom:0; width:100%; max-width:100%; height:60vh }
+      .cart.open{ right:0 }
+      /* On very small devices, ensure thumbnails are zoomed out */
+      .thumb img{ object-fit:contain; width:auto; height:100%; }
+    }

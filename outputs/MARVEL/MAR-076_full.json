@@ -1,0 +1,14 @@
+{
+  "source": "C:\\Users\\Prati\\Downloads\\poster point\\images\\PINTEREST IMAGES\\MARVEL\\MA-026.jpg",
+  "output": "C:\\Users\\Prati\\Downloads\\poster point\\outputs\\MARVEL\\MA-026_full.jpg",
+  "paste_bbox": {
+    "x": 158,
+    "y": 145,
+    "width": 468,
+    "height": 361
+  },
+  "params": {
+    "scale": 0.23859881031064112,
+    "mode": "full_paste"
+  }
+}

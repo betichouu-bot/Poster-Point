@@ -1,0 +1,18 @@
+{
+  "source": "C:\\Users\\Prati\\Downloads\\poster point\\images\\PINTEREST IMAGES\\SPLIT POSTERS\\SP-024.jpeg",
+  "output": "C:\\Users\\Prati\\Downloads\\poster point\\outputs\\SPLIT POSTERS\\SP-024_triptych.jpeg",
+  "strip": "C:\\Users\\Prati\\Downloads\\poster point\\outputs\\SPLIT POSTERS\\SP-024_triptych_strip.png",
+  "paste_bbox": {
+    "x": 119,
+    "y": 150,
+    "width": 546,
+    "height": 997
+  },
+  "orientation": "portrait",
+  "params": {
+    "spacing": 24,
+    "scale": 0.7,
+    "y_offset": 150,
+    "auto_detect": false
+  }
+}

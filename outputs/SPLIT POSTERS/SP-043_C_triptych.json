@@ -1,0 +1,17 @@
+{
+  "source": "C:\\Users\\Prati\\Downloads\\poster point\\images\\PINTEREST IMAGES\\SPLIT POSTERS\\SP-043.jpeg",
+  "output": "C:\\Users\\Prati\\Downloads\\poster point\\outputs\\SPLIT_POSTERS\\SP-043_C_triptych.jpeg",
+  "strip": "C:\\Users\\Prati\\Downloads\\poster point\\outputs\\SPLIT_POSTERS\\SP-043_C_triptych_strip.png",
+  "paste_bbox": {
+    "x": 158,
+    "y": 120,
+    "width": 468,
+    "height": 252
+  },
+  "params": {
+    "spacing": 12,
+    "scale": 0.6,
+    "auto_detect": false,
+    "variant": "C_rows_rotated_columns"
+  }
+}
