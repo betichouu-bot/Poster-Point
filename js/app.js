@@ -727,10 +727,11 @@ const cartTotal = document.getElementById('cart-total');
 // Offer logic
 function computeOfferForEntries(entries) {
     // Offers defined as groupSize -> freePerGroup, larger groups first (better value)
+    // New offer rules: Buy 10 get 5 free (group 15 pay 10), Buy 5 get 2 free (group 7 pay 5), Buy 3 get 1 free (group 4 pay 3)
     const offers = [
-        { group: 16, free: 4 }, // Buy 12 get 4 free -> interpreted as group of 16 (pay 12)
-        { group: 9, free: 2 },  // Buy 7 get 2 free -> group of 9 (pay 7)
-        { group: 5, free: 1 }   // Buy 4 get 1 free -> group of 5 (pay 4)
+        { group: 15, free: 5 }, // Buy 10 get 5 free -> group of 15 (pay 10)
+        { group: 7, free: 2 },  // Buy 5 get 2 free  -> group of 7 (pay 5)
+        { group: 4, free: 1 }   // Buy 3 get 1 free  -> group of 4 (pay 3)
     ];
 
     if (!entries || entries.length === 0) return { applied: false };
@@ -791,7 +792,7 @@ function computeOfferForEntries(entries) {
 function updateOfferBanner() {
     const el = document.getElementById('offer-banner');
     if (!el) return;
-    const baseText = 'Offers: Buy 4 Get 1 Free • Buy 7 Get 2 Free • Buy 12 Get 4 Free';
+    const baseText = 'Offers: Buy 3 Get 1 Free • Buy 5 Get 2 Free • Buy 10 Get 5 Free';
     // Show scope of offer depending on selection
     if (selectedType === 'Posters') {
         if (selectedSubcat) {
