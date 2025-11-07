@@ -735,7 +735,7 @@ function computeOfferForEntries(entries) {
     ];
 
     if (!entries || entries.length === 0) return { applied: false };
-    // require all items to be from the same category OR the same top-level type
+    // derive categories and top-level types for entries
     const cats = new Set(entries.map(e => (String(e.category||'').toUpperCase())));
     // derive top-level type for each entry's category so offers can apply per-type
     const typesFromEntries = new Set(entries.map(e => {
@@ -747,9 +747,11 @@ function computeOfferForEntries(entries) {
         // any other category is treated as Posters
         return 'POSTERS';
     }));
-    // Offer applies only when either all items share the same exact manifest category
-    // (e.g., all ANIME) OR when they all belong to the same top-level type
-    if (cats.size !== 1 && typesFromEntries.size !== 1) return { applied: false };
+    // Previously we required uniform category or top-level type. Make offers
+    // apply cart-wide so customers get the promotion regardless of mixed
+    // categories (this matches user expectation that offers apply across
+    // the whole cart). If you want per-category offers instead, we can
+    // restore the stricter check.
 
     const totalQty = entries.reduce((s, it) => s + (Number(it.qty) || 0), 0);
     if (totalQty <= 0) return { applied: false };
