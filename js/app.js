@@ -245,13 +245,11 @@ function initializeStickers() {
                 const encodedFname = encodeURIComponent(fname);
                 filePath = `images/PINTEREST IMAGES/SINGLE STICKERS/${encodedFname}`;
             }
-            // Use the manifest key for category so runtime filtering (which compares
-            // against the manifest keys like 'SINGLE STICKERS') matches correctly.
             stickerProducts.push({ 
                 id, 
                 name, 
                 price: 9,
-                category: 'SINGLE STICKERS',
+                category: 'Single Stickers',
                 file: filePath 
             });
         });
@@ -531,26 +529,14 @@ function renderProducts() {
 
         // Size options for posters (also apply to Split Posters)
         let sizeHtml = '';
-        // Default display price for the card (used when size-select exists)
-        let defaultSizePrice = p.price;
         if(selectedType === 'Posters' || selectedType === 'Split Posters') {
-            if (selectedType === 'Split Posters') {
-                // Split Posters should expose only A4 and A3 sizes with higher prices
-                sizeHtml = `
-                    <option value="A4" data-price="159" selected>A4 - ₹159</option>
-                    <option value="A3" data-price="259">A3 - ₹259</option>
-                `;
-                defaultSizePrice = 159;
-            } else {
-                sizeHtml = `
-                    <option value="A4" data-price="39" selected>A4 - ₹39</option>
-                    <option value="A3" data-price="69">A3 - ₹69</option>
-                    <option value="A5" data-price="25">A5 - ₹25</option>
-                    <option value="Pocket" data-price="10">Pocket - ₹10</option>
-                    <option value="4x6" data-price="19">4*6 inch - ₹19</option>
-                `;
-                defaultSizePrice = 39;
-            }
+            sizeHtml = `
+                <option value="A4" data-price="39" selected>A4 - ₹39</option>
+                <option value="A3" data-price="69">A3 - ₹69</option>
+                <option value="A5" data-price="25">A5 - ₹25</option>
+                <option value="Pocket" data-price="10">Pocket - ₹10</option>
+                <option value="4x6" data-price="19">4*6 inch - ₹19</option>
+            `;
         }
         
     // Product badge and type (show badge for Posters and Split Posters)
@@ -567,10 +553,10 @@ function renderProducts() {
             ${badge}
             <div class="card-body">
                 <div class="product-name">${escapeHtml(p.name)}</div>
-                <div class="product-price">${formatINR(defaultSizePrice)}</div>
+                <div class="product-price">${formatINR(p.price)}</div>
                 <div class="muted">${itemType}${selectedType === 'Posters' ? ' • <span class="size-label">A4</span>' : ''}</div>
                 <div class="controls">
-                    ${selectedType === 'Posters' || selectedType === 'Split Posters' ? `
+                    ${selectedType === 'Posters' ? `
                         <div class="size-select-wrapper">
                             <label class="size-select-label">Select Size</label>
                             <select class="size-select" data-id="${p.id}">${sizeHtml}</select>
@@ -599,7 +585,7 @@ function renderProducts() {
                 if(badge) badge.textContent = newLabel;
             });
         }
-
+        
         grid.appendChild(card);
     });
     
@@ -739,15 +725,14 @@ const cartTotal = document.getElementById('cart-total');
 // Offer logic
 function computeOfferForEntries(entries) {
     // Offers defined as groupSize -> freePerGroup, larger groups first (better value)
-    // New offer rules: Buy 10 get 5 free (group 15 pay 10), Buy 5 get 2 free (group 7 pay 5), Buy 3 get 1 free (group 4 pay 3)
     const offers = [
-        { group: 15, free: 5 }, // Buy 10 get 5 free -> group of 15 (pay 10)
-        { group: 7, free: 2 },  // Buy 5 get 2 free  -> group of 7 (pay 5)
-        { group: 4, free: 1 }   // Buy 3 get 1 free  -> group of 4 (pay 3)
+        { group: 16, free: 4 }, // Buy 12 get 4 free -> interpreted as group of 16 (pay 12)
+        { group: 9, free: 2 },  // Buy 7 get 2 free -> group of 9 (pay 7)
+        { group: 5, free: 1 }   // Buy 4 get 1 free -> group of 5 (pay 4)
     ];
 
     if (!entries || entries.length === 0) return { applied: false };
-    // derive categories and top-level types for entries
+    // require all items to be from the same category OR the same top-level type
     const cats = new Set(entries.map(e => (String(e.category||'').toUpperCase())));
     // derive top-level type for each entry's category so offers can apply per-type
     const typesFromEntries = new Set(entries.map(e => {
@@ -759,11 +744,9 @@ function computeOfferForEntries(entries) {
         // any other category is treated as Posters
         return 'POSTERS';
     }));
-    // Previously we required uniform category or top-level type. Make offers
-    // apply cart-wide so customers get the promotion regardless of mixed
-    // categories (this matches user expectation that offers apply across
-    // the whole cart). If you want per-category offers instead, we can
-    // restore the stricter check.
+    // Offer applies only when either all items share the same exact manifest category
+    // (e.g., all ANIME) OR when they all belong to the same top-level type
+    if (cats.size !== 1 && typesFromEntries.size !== 1) return { applied: false };
 
     const totalQty = entries.reduce((s, it) => s + (Number(it.qty) || 0), 0);
     if (totalQty <= 0) return { applied: false };
@@ -806,7 +789,7 @@ function computeOfferForEntries(entries) {
 function updateOfferBanner() {
     const el = document.getElementById('offer-banner');
     if (!el) return;
-    const baseText = 'Offers: Buy 3 Get 1 Free • Buy 5 Get 2 Free • Buy 10 Get 5 Free';
+    const baseText = 'Offers: Buy 4 Get 1 Free • Buy 7 Get 2 Free • Buy 12 Get 4 Free';
     // Show scope of offer depending on selection
     if (selectedType === 'Posters') {
         if (selectedSubcat) {
@@ -1066,40 +1049,6 @@ window.addEventListener('DOMContentLoaded', () => {
         checkRuntimeManifestDuplicates();
         startApp();
     }
-
-    // Sidebar hamburger handlers (mobile)
-    const hamburgerBtn = document.getElementById('hamburger-btn');
-    const sidebarEl = document.getElementById('sidebar');
-    const sidebarOverlay = document.getElementById('sidebar-overlay');
-
-    function openSidebar() {
-        if (!sidebarEl) return;
-        sidebarEl.classList.add('open');
-        sidebarOverlay?.classList.add('open');
-        // prevent body scroll while sidebar open on mobile
-        document.body.style.overflow = 'hidden';
-    }
-
-    function closeSidebar() {
-        if (!sidebarEl) return;
-        sidebarEl.classList.remove('open');
-        sidebarOverlay?.classList.remove('open');
-        document.body.style.overflow = '';
-    }
-
-    function toggleSidebar() {
-        if (sidebarEl && sidebarEl.classList.contains('open')) closeSidebar(); else openSidebar();
-    }
-
-    if (hamburgerBtn && sidebarEl) {
-        hamburgerBtn.addEventListener('click', (e) => { e.stopPropagation(); toggleSidebar(); });
-        sidebarOverlay?.addEventListener('click', closeSidebar);
-        // when a user selects a type or subcategory on mobile, automatically close sidebar
-        document.getElementById('type-list')?.addEventListener('click', () => { if (window.innerWidth <= 720) closeSidebar(); });
-        document.getElementById('subcats')?.addEventListener('click', () => { if (window.innerWidth <= 720) closeSidebar(); });
-    }
-
-    
 });
 
 // Runtime diagnostics helper: print manifest categories and counts
