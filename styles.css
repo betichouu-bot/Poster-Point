@@ -119,6 +119,16 @@
     .search input::placeholder{ color:var(--muted) }
     .summary{ color:var(--muted); font-weight:700 }
 
+/* Make the toolbar quick-size select clearly visible on the light banner background */
+#global-size-select{
+  background: #ffffff; /* white background for contrast */
+  color: #111111; /* dark text for readability */
+  border-radius: 8px;
+  padding: 8px 10px;
+  border: 1px solid rgba(0,0,0,0.08);
+  font-weight:700;
+}
+
     /* Themed size select used on product cards */
     .size-select{
       background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
