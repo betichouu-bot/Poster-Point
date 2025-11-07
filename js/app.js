@@ -535,13 +535,10 @@ function renderProducts() {
         let defaultSizePrice = p.price;
         if(selectedType === 'Posters' || selectedType === 'Split Posters') {
             if (selectedType === 'Split Posters') {
-                // Split Posters have higher base prices per request
+                // Split Posters should expose only A4 and A3 sizes with higher prices
                 sizeHtml = `
                     <option value="A4" data-price="159" selected>A4 - ₹159</option>
                     <option value="A3" data-price="259">A3 - ₹259</option>
-                    <option value="A5" data-price="25">A5 - ₹25</option>
-                    <option value="Pocket" data-price="10">Pocket - ₹10</option>
-                    <option value="4x6" data-price="19">4*6 inch - ₹19</option>
                 `;
                 defaultSizePrice = 159;
             } else {
@@ -573,7 +570,7 @@ function renderProducts() {
                 <div class="product-price">${formatINR(defaultSizePrice)}</div>
                 <div class="muted">${itemType}${selectedType === 'Posters' ? ' • <span class="size-label">A4</span>' : ''}</div>
                 <div class="controls">
-                    ${selectedType === 'Posters' ? `
+                    ${selectedType === 'Posters' || selectedType === 'Split Posters' ? `
                         <div class="size-select-wrapper">
                             <label class="size-select-label">Select Size</label>
                             <select class="size-select" data-id="${p.id}">${sizeHtml}</select>
